@@ -1,0 +1,293 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <title>Driver App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'chart js/Chart.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<nav class="navbar navbar-default bg-white">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Tom'em Now</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Admin<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Out For Repo Stats</a></li>
+                        <li><a href="#">Reprocessed Stats</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container pt-50">
+    <div class="row">
+        <div class="col-sm-5 vcenter">
+            <canvas id="myChart" style="width:350px; height:350px "></canvas>
+        </div>
+        <div class="col-sm-6 vcenter">
+            <div id="map" style="height: 400px; width:100%;"></div>
+        </div>
+    </div>
+    <div class="row pt-50 color-white">
+
+        <div class="col-sm-6 bg-yellow">
+            <h3>
+                {{ verihcle_count | default_if_none:'0' }}<br>
+                <small class="color-white">Verhicle Found</small>
+            </h3>
+        </div>
+        <div class="col-sm-6 bg-blue">
+            <h3>
+                 0<br>
+                <small class="color-white">Fileter Applied</small>
+            </h3>
+        </div>
+    </div>
+</div>
+<div class="container pt-50">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-1 col-sm-offset-11">
+                    <a href="{% url 'borrower:export' %}" class="btn btn-lg btn-success">Export</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 pt-30" style="overflow-x: scroll; overflow-y:scroll; max-height:500px;">
+            <table class="table table-bordered">
+                <thead>
+                <th>Borrower Full Name</th>
+                <th>Borrower Addredd</th>
+                <th>Borrower City</th>
+                <th>Borrower State</th>
+                <th>Borrower Zip Code</th>
+                <th>Serial Number</th>
+                <th>Primary Loan CS Reg Pmt Amt</th>
+                <th>Act Last Paid Date</th>
+                <th>Act Total Balance</th>
+                <th>Act Status</th>
+                <th>Actual Days Past Due</th>
+                <th>ActualPmt Past Due</th>
+                <th>Current Due Ammount</th>
+                <th>Contract Date</th>
+                <th>Last Event Date</th>
+                <th>Collateral Recovery Device</th>
+                <th>Collateral Year Model</th>
+                <th>Collateral Make</th>
+                <th>Collateral Model</th>
+                <th>Collateral Stock Number</th>
+                <th>Collateral Vin</th>
+                <th>Latitue</th>
+                <th>Longitude</th>
+                <th>Last Out For Repo Date</th>
+                <th>Actual Record Flags</th>
+                <th>Repossession Form</th>
+                </thead>
+                <tbody>
+                {% for row in object_list %}
+                <tr class="text-center">
+                    <td>{{row.borrower_full_name | default_if_none:"-"}}</td>
+                    <td>{{row.borrower_addredd | default_if_none:"-"}}</td>
+                    <td>{{row.borrower_city | default_if_none:"-"}}</td>
+                    <td>{{row.borrower_state | default_if_none:"-"}}</td>
+                    <td>{{row.borrower_zip_code | default_if_none:"-"}}</td>
+                    <td>{{row.serial_number | default_if_none:"-"}}</td>
+                    <td>{{row.primary_loan_cs_registration_payment_amt | default_if_none:"-"}}</td>
+                    <td>{{row.account_last_paid_date | default_if_none:"-"}}</td>
+                    <td>{{row.account_total_balance | default_if_none:"-"}}</td>
+                    <td>{{row.account_status | default_if_none:"-"}}</td>
+                    <td>{{row.actual_days_past_due | default_if_none:"-"}}</td>
+                    <td>{{row.actual_payment_past_due | default_if_none:"-"}}</td>
+                    <td>{{row.current_due_ammount | default_if_none:"-"}}</td>
+                    <td>{{row.contract_date | default_if_none:"-"}}</td>
+                    <td>{{row.last_event_date | default_if_none:"-"}}</td>
+                    <td>{{row.collateral_recovery_device | default_if_none:"-"}}</td>
+                    <td>{{row.collateral_year_model | default_if_none:"-"}}</td>
+                    <td>{{row.collateral_make | default_if_none:"-"}}</td>
+                    <td>{{row.collateral_model | default_if_none:"-"}}</td>
+                    <td>{{row.collateral_stock_number | default_if_none:"-"}}</td>
+                    <td>{{row.collateral_vin | default_if_none:"-"}}</td>
+                    <td>{{row.latitue | default_if_none:"-"}}</td>
+                    <td>{{row.longitude | default_if_none:"-"}}</td>
+                    <td>{{row.last_out_for_repo_date | default_if_none:"-"}}</td>
+                    <td>{{row.actual_record_flags | default_if_none:"-"}}</td>
+                    <td>
+                        <form class="form email_form" action="{% url 'borrower:mail' row.slug %}" method="POST">
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Comment</label>
+                                <textarea id="comment" class="form-control" name="comment" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-envelope"></i></button>
+                            <a class="btn btn-default" id="download" name="{% url 'borrower:export_invoice' row.slug %}"><i
+                                    class="fa fa-download"></i></a>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script src="{% static 'js/jquery-1.11.1.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'chart js/Chart.min.js' %}" type="text/javascript"></script>
+<script>
+            console.log()
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['active', 'inactive', 'gps'],
+                    datasets: [{
+                            label: '# of Votes',
+                            data: [{{verihcle_states.active}}, {{verihcle_states.inactive}}, {{verihcle_states.gps}}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+//                        yAxes: [{
+//                                ticks: {
+//                                    beginAtZero: true
+//                                }
+//                            }]
+                    }
+                }
+            });
+
+
+
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIDW9YFmwA34pjVrWzMkhMwDdNZQr2iZs&callback=initMap">
+</script>
+<script>
+
+            function initMap() {
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 3,
+                    center: {lat: -28.024, lng: 140.887}
+                });
+
+                // Create an array of alphabetical characters used to label the markers.
+                var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+                // Add some markers to the map.
+                // Note: The code uses the JavaScript Array.prototype.map() method to
+                // create an array of markers based on a given "locations" array.
+                // The map() method here has nothing to do with the Google Maps API.
+                var markers = locations.map(function (location, i) {
+                    return new google.maps.Marker({
+                        position: location,
+                        label: labels[i % labels.length]
+                    });
+                });
+
+                // Add a marker clusterer to manage the markers.
+                var markerCluster = new MarkerClusterer(map, markers,
+                        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+            }
+            var locations = [
+                {% for row in object_list %}
+                    {% if row.latitue and row.longitude %}
+                        {lat:  {{ row.latitue | default_if_none:"" }}, lng: {{ row.longitude | default_if_none:"" }}},
+                    {% endif %}
+                {% endfor %}
+            ];
+
+
+
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+
+<script>
+    $("#download").click(function () {
+      var url = $(this)[0].getAttribute("name");
+      console.log(url);
+      $.ajax({
+        url: url,
+        success: function (data) {
+          var blob=new Blob([data]);
+            var link=document.createElement('a');
+            link.href=window.URL.createObjectURL(blob);
+            link.download="borrower.pdf";
+            link.click();
+        }
+      });
+
+    });
+
+</script>
+<script>
+    $(".email_form").on('submit', function(event){
+      event.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        type:$(this).attr('method'),
+        data: $(this).serialize(),
+        success: function (data) {
+          if(data == "Success"){
+            console.log("done");
+          };
+        }
+      });
+
+    });
+
+</script>
+
+
+</body>
+</html>

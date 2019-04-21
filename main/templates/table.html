@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<link href="bootstrap.css" rel="stylesheet" type="text/css"/>-->
+        <style>
+            body{
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                line-height: 1.42857143;
+                color: #333;
+            }
+            .table > tbody > tr > td{
+                border-top: 0;
+
+            }
+            .border_bottom{
+                border-bottom: 1px solid #000;
+            }
+            .container{
+                width: 970px;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+                display: block;
+
+            }
+            .text-center{
+                text-align: center;
+            }
+            .h2{font-size: 30px;}
+            .h3{}
+            .table{width: 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            .padd-right{
+                margin-right: 50px !important;
+                display: block;
+                padding-top:5px;
+                min-width:30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2 class="text-center">REPOSSESSION ORDER <br>
+                <small>Date Issued: {{today_date}}</small>
+            </h2>
+            <table class="table">
+                <tr>
+                    <td>Company/Lien Holder:</td>
+                    <td><span class="border_bottom padd-right">{{cp_holder}}</span></td>
+                    <td>Contact:</td>
+                    <td><span class="border_bottom padd-right">{{cp_contact}}</span></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><span class="border_bottom padd-right">{{cp_address}}</span></td>
+                    <td>Phone:</td>
+                    <td><span class="border_bottom padd-right">{{cp_phone}}</span></td>
+                </tr>
+                <tr>
+                    <td>City/State:</td>
+                    <td><span class="border_bottom padd-right">{{cp_city_state}}</span></td>
+                    <td>Fax:</td>
+                    <td><span class="border_bottom padd-right">{{cp_fax}}</span></td>
+                </tr>
+                <tr>
+                    <td>Zip:</td>
+                    <td><span class="border_bottom padd-right">{{cp_zip}}</span></td>
+                    <td>Account#:</td>
+                    <td><span class="border_bottom padd-right">{{cp_account}}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="border_bottom padd-right"></span></td>
+                    <td><span class="border_bottom padd-right"></span></td>
+                    <td>Loan#:</td>
+                    <td><span class="border_bottom padd-right">{{cp_loan}}</span></td>
+                </tr>
+            </table>
+
+            <hr style="border-bottom: 2px solid 1px;">
+            <h3 class="text-center">DEBTOR/LESSEE INFORMATION</h3>
+            <hr style="border-bottom: 2px solid 1px;">
+            <table class="table">
+
+                <tr>
+                    <td>Debtor:</td>
+                    <td><span class="border_bottom padd-right">{{db_name}}</span></td>
+                    <td>Spouse:</td>
+                    <td><span class="border_bottom padd-right">{{ds_name}}</span></td>
+                </tr>
+                <tr>
+                    <td>Debtor Address:</td>
+                    <td><span class="border_bottom padd-right">{{db_address}}</span></td>
+                    <td>Address:</td>
+                    <td><span class="border_bottom padd-right">{{ds_address}}</span></td>
+                </tr>
+                <tr>
+                    <td>City, ST, Zip:</td>
+                    <td><span class="border_bottom padd-right">{{db_city_zip}}</span></td>
+                    <td>City, ST Zip:</td>
+                    <td><span class="border_bottom padd-right">{{ds_city_zip}}</span></td>
+                </tr>
+                <tr>
+                    <td>Home Phone:</td>
+                    <td><span class="border_bottom padd-right">{{db_phone}}</span></td>
+                    <td>Phone:</td>
+                    <td><span class="border_bottom padd-right">{{ds_phone}}</span></td>
+                </tr>
+                <tr>
+                    <td>Employer:</td>
+                    <td><span class="border_bottom padd-right">{{db_employer}}</span></td>
+                    <td><span class="border_bottom padd-right"></span></td>
+                    <td><span class="border_bottom padd-right"></span></td>
+                </tr>
+                <tr>
+                    <td>Emp Address:</td>
+                    <td><span class="border_bottom padd-right">{{db_em_address}}</span></td>
+                    <td>Employer:</td>
+                    <td><span class="border_bottom padd-right">{{ds_employer}}</span></td>
+                </tr>
+                <tr>
+                    <td>Emp City, ST,Zip:</td>
+                    <td><span class="border_bottom padd-right">{{db_emp_city_zip}}</span></td>
+                    <td>Address:</td>
+                    <td><span class="border_bottom padd-right">{{ds_emp_address}}</span></td>
+                </tr>
+                <tr>
+                    <td>Bus Phone/Cell Ph:</td>
+                    <td><span class="border_bottom padd-right">{{db_emp_phone}}</span></td>
+                    <td>City, ST, Zip</td>
+                    <td><span class="border_bottom padd-right">{{ds_city_zip}}</span></td>
+                </tr>
+                <tr>
+                    <td>SSN#:</td>
+                    <td><span class="border_bottom padd-right">{{db_ssn}}</span></td>
+                    <td>Bus Phone:</td>
+                    <td><span class="border_bottom padd-right">{{ds_bus_phone}}</span></td>
+                </tr>
+                <tr>
+                    <td>DL:</td>
+                    <td><span class="border_bottom padd-right">{{db_dl}}</span></td>
+                    <td>Cell Phone:</td>
+                    <td><span class="border_bottom padd-right">{{ds_phone}}</span></td>
+                </tr>
+            </table>
+            <hr style="border-bottom: 2px solid 1px;">
+            <h3 class="text-center">ASSET INFORMATION</h3>
+            <hr style="border-bottom: 2px solid 1px;">
+
+            <table class="table">
+                <tr>
+                    <td>Stock #:</td>
+                    <td><span class="border_bottom padd-right">{{stock}}</span></td>
+                    <td>Color:</td>
+                    <td><span class="border_bottom padd-right">{{color}}</span></td>
+                </tr>
+                <tr>
+                    <td>Year:</td>
+                    <td><span class="border_bottom padd-right">{{year}}</span></td>
+                    <td>Ignition #:</td>
+                    <td><span class="border_bottom padd-right">{{ignition}}</span></td>
+                </tr>
+                <tr>
+                    <td>Make:</td>
+                    <td><span class="border_bottom padd-right">{{make}}</span></td>
+                    <td>License:</td>
+                    <td><span class="border_bottom padd-right">{{license}}</span></td>
+                </tr>
+                <tr>
+                    <td>Model:</td>
+                    <td><span class="border_bottom padd-right">{{model}}</span></td>
+
+                </tr>
+                <tr>
+                    <td>VIN #:</td>
+                    <td><span class="border_bottom padd-right">{{vin}}</span></td>
+                    <td>GPS ESN:</td>
+                    <td><span class="border_bottom padd-right">{{gps_esn}}</span></td>
+                </tr>
+            </table>
+
+            <hr style="border-bottom: 2px solid 1px;">
+            <h3 class="text-center">PAYMENT INFORMATION</h3>
+            <hr style="border-bottom: 2px solid 1px;">
+            <table class="table">
+                <tr>
+                    <td>Payment Due Date:</td>
+                    <td><span class="border_bottom padd-right">{{payment_due_date}}</span></td>
+                    <td>Partial Payment Schedule:</td>
+                    <td>Late Fee</td>
+                </tr>
+                <tr>
+                    <td>Past Due Amount:</td>
+                    <td><span class="border_bottom padd-right">{{past_due_amount}}</span></td>
+                </tr>
+                <tr>
+                    <td>Late Charge Fees:</td>
+                    <td><span class="border_bottom  padd-right">{{late_charge_fee}}</span></td>
+                </tr>
+                <tr>
+                    <td>Est Balance Owned:</td>
+                    <td>
+                        <span class = "border_bottom padd-right">{{est_balance_owned}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Days Past Due:</td>
+                    <td><span class="border_bottom padd-right">{{days_past_due}}</span></td>
+                </tr>
+                <tr>
+                    <td>Contract Date:</td>
+                    <td>
+                        <span class='border_bottom padd-right'>{{contract_date}}</span>
+                    </td>
+                </tr>
+            </table>
+
+            <hr style="border-bottom: 2px solid 1px;">
+            <h3 class="text-center">AGREEMENT</h3>
+            <hr style="border-bottom: 2px solid 1px;">
+            <p>
+                THIS IS AN AUTHORIZATION FOR _________________________________________ TO ACT IN BEHALF
+                OF LEGAL OWNER AS REPOSSESSOR FOR THE ABOVE MENTIONED VEHICLE.
+            </p>
+            <p>
+                REPOSSESSOR IS HEREBY AUTHORIZED TO REPOSSESS THE ABOVE DESCRIBED VEHICLE. IT IS
+                UNDERSTOOD THAT YOU WILL ACT AS AN INDEPENDENT CONTRACTOR AND NOT AS OUR EMPLOYEE.
+                THE TIME, MANNER, AND METHOD OF PERFORMANCE OF ANY SUCH SERVICES SHALL BE DETERMINED
+                SOLELY BY YOU.
+            </p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Company Signature: </span>
+                    <span class="border_bottom padd-right"><img src="{{signiture.url}}" style="max-height: 50px;" /></span>
+                </div>
+                <div class="col-sm-6">
+                    <span>Date: </span>
+                    <span class="border_bottom padd-right">{{today_date}}</span>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
